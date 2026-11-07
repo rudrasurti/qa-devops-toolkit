@@ -1,0 +1,19 @@
+services:
+  mock-api:
+    image: wiremock/wiremock:3.9.1
+    command: ["--global-response-templating", "--verbose"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings:ro
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.tests
+    environment:
+      BASE_URL: http://mock-api:8080
+    depends_on:
+      - mock-api
+    volumes:
+      - ./results:/app/results
