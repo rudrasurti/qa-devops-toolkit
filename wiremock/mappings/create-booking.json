@@ -8,7 +8,15 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"bookingid\": 1, \"booking\": {{{request.body}}}}",
+    "jsonBody": {
+      "bookingid": 1,
+      "booking": {
+        "firstname": "{{jsonPath request.body '$.firstname'}}",
+        "lastname": "{{jsonPath request.body '$.lastname'}}",
+        "totalprice": "{{jsonPath request.body '$.totalprice'}}",
+        "depositpaid": "{{jsonPath request.body '$.depositpaid'}}"
+      }
+    },
     "transformers": [
       "response-template"
     ]
