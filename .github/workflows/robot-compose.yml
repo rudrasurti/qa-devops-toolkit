@@ -1,0 +1,49 @@
+# Reusable workflow: any repo can call this to run Robot Framework tests
+# against a WireMock mock with Docker Compose and get a QA Report Bot summary.
+name: Robot tests with Docker Compose (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      compose-file:
+        type: string
+        default: docker-compose.yml
+      test-service:
+        type: string
+        default: tests
+      report-title:
+        type: string
+        default: Robot Framework (mock API)
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  compose-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run tests against the mock
+        run: |
+          mkdir -p results && chmod 777 results
+          docker compose -f ${{ inputs.compose-file }} up --build \
+            --abort-on-container-exit --exit-code-from ${{ inputs.test-service }}
+      - name: Mock API logs
+        if: failure()
+        run: docker compose -f ${{ inputs.compose-file }} logs mock-api | tail -100
+      - name: Test summary
+        if: always()
+        uses: rudrasurti/qa-report-bot@main
+        with:
+          junit-path: results/xunit.xml
+          title: ${{ inputs.report-title }}
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-compose-results
+          path: results/
+      - name: Stop containers
+        if: always()
+        run: docker compose -f ${{ inputs.compose-file }} down -v
