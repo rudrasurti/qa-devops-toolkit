@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/booking"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"bookingid\": 1, \"booking\": {{{request.body}}}}",
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

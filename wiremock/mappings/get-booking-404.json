@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/booking/999"
+  },
+  "response": {
+    "status": 404,
+    "body": "Not Found"
+  }
+}

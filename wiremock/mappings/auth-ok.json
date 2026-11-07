@@ -1,0 +1,30 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/auth",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.username",
+          "equalTo": "admin"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.password",
+          "equalTo": "password123"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "token": "abc123"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "DELETE",
+    "url": "/booking/1",
+    "headers": {
+      "Cookie": {
+        "equalTo": "token=abc123"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": "Created"
+  }
+}

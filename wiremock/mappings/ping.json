@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/ping"
+  },
+  "response": {
+    "status": 201,
+    "body": "Created"
+  }
+}

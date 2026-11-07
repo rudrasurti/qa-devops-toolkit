@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/booking/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "firstname": "Rudra",
+      "lastname": "Surti",
+      "totalprice": 150,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-12-01",
+        "checkout": "2026-12-05"
+      },
+      "additionalneeds": "Breakfast"
+    }
+  }
+}

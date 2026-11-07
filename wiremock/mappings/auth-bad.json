@@ -1,0 +1,16 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "url": "/auth"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "reason": "Bad credentials"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

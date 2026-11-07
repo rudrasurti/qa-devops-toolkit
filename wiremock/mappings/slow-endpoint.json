@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/booking/slow"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 1500,
+    "jsonBody": {
+      "note": "simulated slow dependency"
+    }
+  }
+}
